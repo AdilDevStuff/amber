@@ -23,6 +23,7 @@
 
 #include <QCheckBox>
 #include <QDialog>
+#include <QMessageBox>
 #include <QSpinBox>
 
 #include "engine/clip.h"
@@ -36,9 +37,9 @@ class AutoCutSilenceDialog : public QDialog {
   int exec() override;
  private slots:
   void accept() override;
-
- private:
-  void cut_silence();
+private:
+  enum CutResult { NoAudioClips, NoAudioDetected, NoSilenceDetected, CutsApplied };
+  CutResult cut_silence();
 
   QVector<int> clips_;
 
